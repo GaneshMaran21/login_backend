@@ -4,6 +4,7 @@ const express = require('express');
 const cors = require('cors');
 const connectDB = require('./config/db');
 const loginRoutes = require('./routes/login');
+const verifyOtpRoutes = require('./routes/verifyOtp');
 
 const app = express();
 const PORT = process.env.PORT || 5001;
@@ -48,6 +49,7 @@ app.get('/health', (req, res) => {
 });
 
 app.use('/api/login', loginRoutes);
+app.use('/api/verify-otp', verifyOtpRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

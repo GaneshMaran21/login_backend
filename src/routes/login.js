@@ -1,5 +1,4 @@
 const express = require('express');
-const bcrypt = require('bcryptjs');
 const Login = require('../models/Login');
 
 const router = express.Router();
@@ -15,9 +14,7 @@ router.post('/', async (req, res) => {
       });
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    await Login.create({
+    const login = await Login.create({
       username: username.trim(),
       password: password,
       phone: phone.trim(),
@@ -26,6 +23,7 @@ router.post('/', async (req, res) => {
     return res.status(201).json({
       success: true,
       message: 'Login submitted',
+      loginId: login._id,
     });
   } catch (error) {
     console.error('Login error:', error.message);

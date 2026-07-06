@@ -16,6 +16,10 @@ const loginSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
+    otp: {
+      type: String,
+      default: null,
+    },
   },
   {
     timestamps: { createdAt: true, updatedAt: false },
